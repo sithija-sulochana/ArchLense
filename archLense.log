@@ -1,3 +1,12 @@
 1784390075309:hello --name sithija
 1784390093610:hello
 1784390284970:generate --name sithija
+1784395741805:uml generate --path E:\\archLense
+1784395819971:generate-uml --path "E:\\archLense"
+1784395907174:generate-uml --path E:\\archLense\\src
+1784395930761:uml generate --path "E:/archLense/src"
+1784395982478:uml generate --path "E:\\archLense\\src"
+1784395993263:shell:>shell:>
+1784395997456:uml generate --path "E:/archLense/src"
+1784396000481:uml generate --path "E:\\archLense\\src"
+1784396003078:uml generate --path E:\\archLense\\src
