@@ -18,7 +18,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+
 
 public class UMLGenerator {
     private final FileAnalyzer fileAnalyzer;
@@ -28,12 +28,11 @@ public class UMLGenerator {
     private final RelationShipAnalyzer relationshipAnalyzer;
     private final UMLCodeGenerator codeGenerator;
 
-    public UMLGenerator(FileAnalyzer fileAnalyzer, PlainUmlGenerator generator, PdfGenerator pdfGenerator, ClassAnalyzer classAnalyzer, RelationShipAnalyzer relationShipAnalyzer, RelationShipAnalyzer relationshipAnalyzer, UMLCodeGenerator codeGenerator) {
+    public UMLGenerator(FileAnalyzer fileAnalyzer, PlainUmlGenerator generator, PdfGenerator pdfGenerator, ClassAnalyzer classAnalyzer, RelationShipAnalyzer relationshipAnalyzer, UMLCodeGenerator codeGenerator) {
         this.fileAnalyzer = fileAnalyzer;
         this.generator = generator;
         this.pdfGenerator = pdfGenerator;
         this.classAnalyzer = classAnalyzer;
-
         this.relationshipAnalyzer = relationshipAnalyzer;
         this.codeGenerator = codeGenerator;
     }

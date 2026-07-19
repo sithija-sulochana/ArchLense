@@ -6,18 +6,21 @@ import lombok.NoArgsConstructor;
 import org.checkerframework.checker.units.qual.C;
 import org.example.archlense.enumerators.RelationshipType;
 import org.example.archlense.util.RelationshipUtils;
-import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Component
+
+
 public class UMLRelationship {
     private String source;
 
     private String target;
 
     private RelationshipType type;
+
+    public UMLRelationship(String source, String target, RelationshipType type) {
+        this.source = source;
+        this.target = target;
+        this.type = type;
+    }
 
     @Override
     public String toString() {
@@ -29,4 +32,27 @@ public class UMLRelationship {
                 + target;
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public RelationshipType getType() {
+        return type;
+    }
+
+    public void setType(RelationshipType type) {
+        this.type = type;
+    }
 }

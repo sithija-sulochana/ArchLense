@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileOutputStream;
 
-@Component
+
 public class PdfGenerator {
 
     public void printDiagram(String umlText) {

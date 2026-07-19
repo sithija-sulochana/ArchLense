@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Component
 public class CompositionDetector {
     public List<UMLRelationship> detect(List<UMLClass> classes) {
         Set<UMLRelationship> results = new HashSet<>();
