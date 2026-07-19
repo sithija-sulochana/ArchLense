@@ -10,18 +10,18 @@ import java.nio.file.Paths;
 import java.util.List;
 @Component
 public class FileAnalyzer {
-    public List<File> scan (String path){
-        try{
-            return Files.walk(Paths.get(path))
-                    .filter(
-                            p -> p.endsWith(".java")
-                    )
+
+    public List<File> scan(String path) {
+        try {
+            return Files.walk(Path.of(path))
+                    .filter(Files::isRegularFile)
+                    .filter(p -> p.toString().endsWith(".java"))
                     .map(Path::toFile)
                     .toList();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+            return List.of();
         }
-        return null;
     }
 }

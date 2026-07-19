@@ -37,13 +37,21 @@ public class UMLGenerator {
     public void generate(String path) throws Exception {
         List<File> files = fileAnalyzer.scan(path);
         List<UMLClass> classes = new ArrayList<>();
-
+        System.out.println("Files found: " + files.size());
         for (File file : files) {
             UMLClass umlClass = classAnalyzer.analyze(file);
-            classes.add(umlClass);
+
+            if(umlClass != null){
+                System.out.println("Class found: " + umlClass.getName());
+                classes.add(umlClass);
+
+            }else{
+                System.out.println("Class not found in file: " + file.getName());
+            }
         }
         String uml = generator.generate(classes);
         pdfGenerator.printDiagram(uml);
+        System.out.println(uml);
     }
 
 

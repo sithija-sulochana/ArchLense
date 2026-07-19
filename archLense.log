@@ -10,3 +10,34 @@
 1784395997456:uml generate --path "E:/archLense/src"
 1784396000481:uml generate --path "E:\\archLense\\src"
 1784396003078:uml generate --path E:\\archLense\\src
+1784418757485:uml generate --path "E:\\archLense\\src\\main\\java\\org\\example\\archlense"
+1784418921593:uml generate --path "E:\\archLense\\src\\main\\java\\org\\example\\archlense\\analyzer"
+1784419437628:generate-uml --path E:/archLense
+1784419464885:generate uml --path E:/archLense
+1784419486325:uml generate E:/archLense
+1784420021150:uml generate --path "E:\\archLense\\src\\main\\java\\org\\example\\archlense\\analyzer"
+1784420110894:uml generate --path "E:/archLense/src/main/java/org/example/archlense/analyzer"
+1784420251470:uml generate E:/archLense
+1784420611287:shell:>uml generate E:/archLense
+1784420611296:Files found: 13
+1784420611299:Classes found : ClassAnalyzer
+1784420611302:Classes found : FileAnalyzer
+1784420611306:Classes found : RelationShipAnalyzer
+1784420611309:Classes found : ArchLenseApplication
+1784420611313:Classes found : PdfGenerator
+1784420611315:Classes found : PlainUmlGenerator
+1784420611319:Classes found : UMLClass
+1784420611321:Classes found : UMLField
+1784420611323:Classes found : UMLRelationship
+1784420611324:Classes found : UMLGenerator
+1784420611327:Classes found : UmlCommands
+1784420611329:Classes found : ArchLenseApplicationTests
+1784420611334:Cannot invoke "org.example.archlense.model.UMLClass.getName()" because "umlClass" is null
+1784420643257:Details of the error have been omitted. You can use the stacktrace command to print the full stacktrace.uml generate --path E:/archLense
+1784420678515:generate-uml --path E:/archLense
+1784420693131:uml generate --path E:/archLense
+1784420878245:uml generate E:/archLense
+1784420901307:uml generate --path E:/archLense
+1784421056036:uml generate E:/archLense
+1784421193748:generate-uml --path E:/archLense
+1784421203091:uml generate E:/archLense

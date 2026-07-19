@@ -5,21 +5,28 @@ import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.FileOutputStream;
+
 @Component
 public class PdfGenerator {
-    public static void printDiagram(String umlText){
+
+    public void printDiagram(String umlText) {
+
         SourceStringReader reader = new SourceStringReader(umlText);
-        try {
+
+        File file = new File("diagram.png");
+
+        System.out.println("Saving diagram: " + file.getAbsolutePath());
+
+        try (FileOutputStream output = new FileOutputStream(file)) {
+
             reader.outputImage(
-                    new FileOutputStream(
-                            "diagram.pdf"
-                    ),
-                    new FileFormatOption(
-                            FileFormat.PDF
-                    )
+                    output,
+                    new FileFormatOption(FileFormat.PNG)
             );
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -9,6 +9,7 @@ import java.util.List;
 public class PlainUmlGenerator {
     public String generate(List<UMLClass> classes){
         StringBuilder sb = new StringBuilder();
+
         sb.append("@startuml\n");
         for (UMLClass umlClass : classes) {
             sb.append("class ").append(umlClass.getName()).append(" {\n");
