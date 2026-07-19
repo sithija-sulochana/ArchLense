@@ -9,11 +9,14 @@ import org.example.archlense.model.UMLMethod;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
 public class ClassAnalyzer {
     public UMLClass analyze(File file) throws Exception{
+        List<String> parameters = new ArrayList<>();
         CompilationUnit cu = StaticJavaParser.parse(file);
         Optional<ClassOrInterfaceDeclaration> optionalClass =
                 cu.findFirst(ClassOrInterfaceDeclaration.class);
@@ -33,11 +36,16 @@ public class ClassAnalyzer {
             String visibility = getVisibility(field.getAccessSpecifier().asString());
             umlClass.getFields().add(new UMLField(fieldName, fieldType, visibility));
         });
+
+
         classDeclaration.getMethods().forEach(method -> {
             String methodName = method.getNameAsString();
             String returnType = method.getType().asString();
             String visibility = getVisibility(method.getAccessSpecifier().asString());
-            umlClass.getMethods().add(new UMLMethod(methodName, returnType, visibility));
+            method.getParameters().forEach(parameter -> {
+                parameters.add(parameter.getType().asString());
+            });
+            umlClass.getMethods().add(new UMLMethod(methodName, returnType, visibility,parameters));
         });
         return umlClass;
     }

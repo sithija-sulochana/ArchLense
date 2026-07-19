@@ -8,6 +8,7 @@ import org.example.archlense.analyzer.RelationShipAnalyzer;
 import org.example.archlense.generator.PdfGenerator;
 import org.example.archlense.generator.PlainUmlGenerator;
 import org.example.archlense.model.UMLClass;
+import org.example.archlense.model.UMLRelationship;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +24,15 @@ public class UMLGenerator {
     private final PlainUmlGenerator generator;
     private final PdfGenerator pdfGenerator;
     private final ClassAnalyzer classAnalyzer;
-    private final RelationShipAnalyzer relationShipAnalyzer;
+    private final RelationShipAnalyzer relationshipAnalyzer;
 
-    public UMLGenerator(FileAnalyzer fileAnalyzer, PlainUmlGenerator generator, PdfGenerator pdfGenerator, ClassAnalyzer classAnalyzer, RelationShipAnalyzer relationShipAnalyzer) {
+    public UMLGenerator(FileAnalyzer fileAnalyzer, PlainUmlGenerator generator, PdfGenerator pdfGenerator, ClassAnalyzer classAnalyzer, RelationShipAnalyzer relationShipAnalyzer, RelationShipAnalyzer relationshipAnalyzer) {
         this.fileAnalyzer = fileAnalyzer;
         this.generator = generator;
         this.pdfGenerator = pdfGenerator;
         this.classAnalyzer = classAnalyzer;
-        this.relationShipAnalyzer = relationShipAnalyzer;
+
+        this.relationshipAnalyzer = relationshipAnalyzer;
     }
 
 
@@ -50,7 +52,8 @@ public class UMLGenerator {
                 System.out.println("Class not found in file: " + file.getName());
             }
         }
-        String uml = generator.generate(classes);
+        List<UMLRelationship> relationships = relationshipAnalyzer.analyze(classes);
+        String uml = generator.generate(classes, relationships);
         pdfGenerator.printDiagram(uml);
         System.out.println(uml);
     }
