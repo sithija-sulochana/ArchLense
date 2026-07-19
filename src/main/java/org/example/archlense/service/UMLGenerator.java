@@ -45,6 +45,7 @@ public class UMLGenerator {
                 System.out.println("Class found: " + umlClass.getName());
                 classes.add(umlClass);
 
+
             }else{
                 System.out.println("Class not found in file: " + file.getName());
             }

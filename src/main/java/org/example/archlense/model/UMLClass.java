@@ -12,8 +12,8 @@ import java.util.List;
 @Data
 public class UMLClass {
     private String name;
-    private List<String > fields = new ArrayList<>();
-    private List<String> methods = new ArrayList<>();
+    private List<UMLField > fields = new ArrayList<>();
+    private List<UMLMethod> methods = new ArrayList<>();
     public UMLClass(String name) {
         this.name = name;
     }
