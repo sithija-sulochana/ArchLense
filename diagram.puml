@@ -14,9 +14,6 @@ class RelationShipAnalyzer {
   - : CompositionDetector
   + analyze() : List<UMLRelationship>
 }
-class ArchLenseApplication {
-  + main() : void
-}
 class AssociationDetector {
   + detect() : List<UMLRelationship>
 }
@@ -121,15 +118,15 @@ class UmlCommands {
 class RelationshipUtils {
   + generateRelationshipArrow() : String
 }
-UMLGenerator -- FileAnalyzer
-RelationShipAnalyzer -- DependencyDetector
-RelationShipAnalyzer -- InheritanceDetector
-UMLGenerator -- PdfGenerator
 RelationShipAnalyzer -- AssociationDetector
+RelationShipAnalyzer -- InheritanceDetector
+UMLGenerator -- FileAnalyzer
+RelationShipAnalyzer -- CompositionDetector
 UMLGenerator -- PlainUmlGenerator
+UMLGenerator -- UMLCodeGenerator
+UMLGenerator -- PdfGenerator
 UMLGenerator -- RelationShipAnalyzer
+RelationShipAnalyzer -- DependencyDetector
 RelationShipAnalyzer -- ImplementationDetector
 UMLGenerator -- ClassAnalyzer
-UMLGenerator -- UMLCodeGenerator
-RelationShipAnalyzer -- CompositionDetector
 @enduml

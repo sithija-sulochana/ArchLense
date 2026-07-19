@@ -6,14 +6,13 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import org.example.archlense.model.UMLClass;
 import org.example.archlense.model.UMLField;
 import org.example.archlense.model.UMLMethod;
-import org.springframework.stereotype.Component;
+
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
 public class ClassAnalyzer {
     public UMLClass analyze(File file) throws Exception{
         List<String> parameters = new ArrayList<>();
@@ -21,7 +20,7 @@ public class ClassAnalyzer {
         Optional<ClassOrInterfaceDeclaration> optionalClass =
                 cu.findFirst(ClassOrInterfaceDeclaration.class);
 
-        if (optionalClass.isEmpty()) {
+        if (optionalClass.isEmpty()){
             return null;
         }
 

@@ -6,7 +6,7 @@ import org.example.archlense.model.UMLField;
 import org.example.archlense.model.UMLMethod;
 import org.example.archlense.model.UMLRelationship;
 import org.example.archlense.util.RelationshipUtils;
-import org.springframework.stereotype.Component;
+
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package org.example.archlense.generator;
 
 import net.sourceforge.plantuml.SourceStringReader;
-import org.springframework.stereotype.Component;
+
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;

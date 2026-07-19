@@ -10,8 +10,7 @@ import org.example.archlense.generator.PlainUmlGenerator;
 import org.example.archlense.generator.UMLCodeGenerator;
 import org.example.archlense.model.UMLClass;
 import org.example.archlense.model.UMLRelationship;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
 
 import java.io.File;
 import java.nio.file.Files;
@@ -43,17 +42,20 @@ public class UMLGenerator {
         List<UMLClass> classes = new ArrayList<>();
         System.out.println("Files found: " + files.size());
         for (File file : files) {
+
             UMLClass umlClass = classAnalyzer.analyze(file);
 
             if(umlClass != null){
-                System.out.println("Class found: " + umlClass.getName());
+
                 classes.add(umlClass);
 
 
             }else{
                 System.out.println("Class not found in file: " + file.getName());
             }
+
         }
+        System.out.println("Classes found: " + classes.size());
         List<UMLRelationship> relationships = relationshipAnalyzer.analyze(classes);
         String uml = generator.generate(classes, relationships);
         pdfGenerator.printDiagram(uml);

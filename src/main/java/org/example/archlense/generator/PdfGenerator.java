@@ -3,7 +3,7 @@ package org.example.archlense.generator;
 import net.sourceforge.plantuml.FileFormat;
 import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;
-import org.springframework.stereotype.Component;
+
 
 import java.io.File;
 import java.io.FileOutputStream;

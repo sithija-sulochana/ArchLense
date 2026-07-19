@@ -3,7 +3,7 @@ package org.example.archlense.detectors;
 import org.example.archlense.enumerators.RelationshipType;
 import org.example.archlense.model.UMLClass;
 import org.example.archlense.model.UMLRelationship;
-import org.springframework.stereotype.Component;
+
 
 import java.util.ArrayList;
 import java.util.HashSet;
