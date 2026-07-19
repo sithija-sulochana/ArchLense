@@ -1,0 +1,120 @@
+@startuml
+class ClassAnalyzer {
+  + analyze() : UMLClass
+  - getVisibility() : String
+}
+class FileAnalyzer {
+  + scan() : List<File>
+}
+class RelationShipAnalyzer {
+  association : AssociationDetector
+  inheritance : InheritanceDetector
+  implementation : ImplementationDetector
+  dependency : DependencyDetector
+  composition : CompositionDetector
+  aggregation : AggregationDetector
+  + analyze() : List<UMLRelationship>
+}
+class ArchLenseApplication {
+  + main() : void
+}
+class AggregationDetector {
+  + detect() : List<UMLRelationship>
+}
+class AssociationDetector {
+  + detect() : List<UMLRelationship>
+}
+class CompositionDetector {
+  + detect() : List<UMLRelationship>
+}
+class DependencyDetector {
+  + detect() : List<UMLRelationship>
+}
+class ImplementationDetector {
+  + detect() : List<UMLRelationship>
+}
+class InheritanceDetector {
+  + detect() : List<UMLRelationship>
+}
+class PdfGenerator {
+  + printDiagram() : void
+}
+class PlainUmlGenerator {
+  + generate() : String
+}
+class UMLCodeGenerator {
+  + saveUMLCode() : void
+}
+class UMLClass {
+  name : String
+  fields : List<UMLField>
+  methods : List<UMLMethod>
+  interfaces : List<String>
+  parentClass : List<String>
+  dependencies : List<String>
+  createdObjects : List<String>
+}
+class UMLField {
+  name : String
+  type : String
+  visibility : String
+  + toString() : String
+}
+class UMLMethod {
+  name : String
+  returnType : String
+  visibility : String
+  parameter : List<String>
+}
+class UMLRelationship {
+  source : String
+  target : String
+  type : RelationshipType
+  + toString() : String
+}
+class UMLGenerator {
+  fileAnalyzer : FileAnalyzer
+  generator : PlainUmlGenerator
+  pdfGenerator : PdfGenerator
+  classAnalyzer : ClassAnalyzer
+  relationshipAnalyzer : RelationShipAnalyzer
+  codeGenerator : UMLCodeGenerator
+  + generate() : void
+}
+class UmlCommands {
+  umlGenerator : UMLGenerator
+  + generateUml() : String
+}
+class RelationshipUtils {
+  + generateRelationshipArrow() : String
+}
+class ArchLenseApplicationTests {
+  ~ contextLoads() : void
+}
+RelationShipAnalyzer -- InheritanceDetector
+RelationShipAnalyzer -- CompositionDetector
+RelationShipAnalyzer -- AssociationDetector
+UMLGenerator -- RelationShipAnalyzer
+UmlCommands -- UMLGenerator
+RelationShipAnalyzer -- DependencyDetector
+UMLGenerator -- PdfGenerator
+UMLGenerator -- FileAnalyzer
+UMLGenerator -- PlainUmlGenerator
+UMLGenerator -- UMLCodeGenerator
+UMLGenerator -- ClassAnalyzer
+RelationShipAnalyzer -- AggregationDetector
+RelationShipAnalyzer -- ImplementationDetector
+UMLGenerator o-- FileAnalyzer
+RelationShipAnalyzer o-- AggregationDetector
+UMLGenerator o-- UMLCodeGenerator
+UmlCommands o-- UMLGenerator
+RelationShipAnalyzer o-- AssociationDetector
+RelationShipAnalyzer o-- ImplementationDetector
+UMLGenerator o-- PdfGenerator
+UMLGenerator o-- RelationShipAnalyzer
+RelationShipAnalyzer o-- DependencyDetector
+UMLGenerator o-- ClassAnalyzer
+UMLGenerator o-- PlainUmlGenerator
+RelationShipAnalyzer o-- CompositionDetector
+RelationShipAnalyzer o-- InheritanceDetector
+@enduml

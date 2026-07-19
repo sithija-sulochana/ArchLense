@@ -7,6 +7,7 @@ import org.example.archlense.analyzer.FileAnalyzer;
 import org.example.archlense.analyzer.RelationShipAnalyzer;
 import org.example.archlense.generator.PdfGenerator;
 import org.example.archlense.generator.PlainUmlGenerator;
+import org.example.archlense.generator.UMLCodeGenerator;
 import org.example.archlense.model.UMLClass;
 import org.example.archlense.model.UMLRelationship;
 import org.springframework.stereotype.Component;
@@ -25,14 +26,16 @@ public class UMLGenerator {
     private final PdfGenerator pdfGenerator;
     private final ClassAnalyzer classAnalyzer;
     private final RelationShipAnalyzer relationshipAnalyzer;
+    private final UMLCodeGenerator codeGenerator;
 
-    public UMLGenerator(FileAnalyzer fileAnalyzer, PlainUmlGenerator generator, PdfGenerator pdfGenerator, ClassAnalyzer classAnalyzer, RelationShipAnalyzer relationShipAnalyzer, RelationShipAnalyzer relationshipAnalyzer) {
+    public UMLGenerator(FileAnalyzer fileAnalyzer, PlainUmlGenerator generator, PdfGenerator pdfGenerator, ClassAnalyzer classAnalyzer, RelationShipAnalyzer relationShipAnalyzer, RelationShipAnalyzer relationshipAnalyzer, UMLCodeGenerator codeGenerator) {
         this.fileAnalyzer = fileAnalyzer;
         this.generator = generator;
         this.pdfGenerator = pdfGenerator;
         this.classAnalyzer = classAnalyzer;
 
         this.relationshipAnalyzer = relationshipAnalyzer;
+        this.codeGenerator = codeGenerator;
     }
 
 
@@ -55,7 +58,8 @@ public class UMLGenerator {
         List<UMLRelationship> relationships = relationshipAnalyzer.analyze(classes);
         String uml = generator.generate(classes, relationships);
         pdfGenerator.printDiagram(uml);
-        System.out.println(uml);
+        codeGenerator.saveUMLCode(uml);
+
     }
 
 
