@@ -1,6 +1,6 @@
 @startuml
 class ClassAnalyzer {
-  + analyze() : UMLClass
+  + analyze() : List<UMLClass>
   - getVisibility() : String
 }
 class FileAnalyzer {
@@ -28,6 +28,22 @@ class ImplementationDetector {
 }
 class InheritanceDetector {
   + detect() : List<UMLRelationship>
+}
+class Dog {
+  - : String
+  - : int
+  + getName() : String
+  + setName() : void
+  + getAge() : int
+  + setAge() : void
+}
+class Animal {
+  - : String
+  - : int
+  + getName() : String
+  + setName() : void
+  + getAge() : int
+  + setAge() : void
 }
 class UMLGeneratorFactory {
   + createRelationshipAnalyzer() : RelationShipAnalyzer
@@ -129,4 +145,5 @@ UMLGenerator -- RelationShipAnalyzer
 RelationShipAnalyzer -- DependencyDetector
 RelationShipAnalyzer -- ImplementationDetector
 UMLGenerator -- ClassAnalyzer
+Dog --|> Animal
 @enduml

@@ -14,39 +14,38 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClassAnalyzer {
-    public UMLClass analyze(File file) throws Exception{
-        List<String> parameters = new ArrayList<>();
+    public List<UMLClass> analyze(File file) throws Exception{
         CompilationUnit cu = StaticJavaParser.parse(file);
-        Optional<ClassOrInterfaceDeclaration> optionalClass =
-                cu.findFirst(ClassOrInterfaceDeclaration.class);
 
-        if (optionalClass.isEmpty()){
-            return null;
-        }
+        List<UMLClass> result = new ArrayList<>();
+        for (ClassOrInterfaceDeclaration declaration : cu.findAll(ClassOrInterfaceDeclaration.class)){
 
-        ClassOrInterfaceDeclaration classDeclaration =
-                optionalClass.get();
+            UMLClass umlClass = new UMLClass(declaration.getNameAsString());
 
-        UMLClass umlClass = new UMLClass(classDeclaration.getNameAsString());
-
-        classDeclaration.getFields().forEach(field -> {
-            String fieldName = field.getVariables().get(0).getNameAsString();
-            String fieldType = field.getElementType().asString();
-            String visibility = getVisibility(field.getAccessSpecifier().asString());
-            umlClass.getFields().add(new UMLField(fieldName, fieldType, visibility));
-        });
-
-
-        classDeclaration.getMethods().forEach(method -> {
-            String methodName = method.getNameAsString();
-            String returnType = method.getType().asString();
-            String visibility = getVisibility(method.getAccessSpecifier().asString());
-            method.getParameters().forEach(parameter -> {
-                parameters.add(parameter.getType().asString());
+            declaration.getFields().forEach(field -> {
+                String fieldName = field.getVariables().get(0).getNameAsString();
+                String fieldType = field.getVariables().get(0).getType().asString();
+                String visibility = getVisibility(field.getAccessSpecifier().asString());
+                umlClass.getFields().add(new UMLField(fieldName, fieldType, visibility));
             });
-            umlClass.getMethods().add(new UMLMethod(methodName, returnType, visibility,parameters));
-        });
-        return umlClass;
+            declaration.getMethods().forEach(method -> {
+                List<String> parameters = new ArrayList<>();
+                String methodName = method.getNameAsString();
+                String returnType = method.getType().asString();
+                String visibility = getVisibility(method.getAccessSpecifier().asString());
+                method.getParameters().forEach(parameter -> {
+                    parameters.add(parameter.getType().asString());
+                });
+                umlClass.getMethods().add(new UMLMethod(methodName, returnType, visibility,parameters));
+            });
+
+            declaration.getExtendedTypes()
+                    .forEach(type -> {
+                        umlClass.getParentClass().add(type.getNameAsString());
+                    });
+            result.add(umlClass);
+        }
+        return result;
     }
     private String getVisibility(String modifier){
 
