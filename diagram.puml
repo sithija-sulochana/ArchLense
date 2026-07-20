@@ -7,11 +7,11 @@ class FileAnalyzer {
   + scan() : List<File>
 }
 class RelationShipAnalyzer {
-  - : AssociationDetector
-  - : InheritanceDetector
-  - : ImplementationDetector
-  - : DependencyDetector
-  - : CompositionDetector
+  - association : AssociationDetector
+  - inheritance : InheritanceDetector
+  - implementation : ImplementationDetector
+  - dependency : DependencyDetector
+  - composition : CompositionDetector
   + analyze() : List<UMLRelationship>
 }
 class AssociationDetector {
@@ -30,16 +30,16 @@ class InheritanceDetector {
   + detect() : List<UMLRelationship>
 }
 class Dog {
-  - : String
-  - : int
+  - name : String
+  - age : int
   + getName() : String
   + setName() : void
   + getAge() : int
   + setAge() : void
 }
 class Animal {
-  - : String
-  - : int
+  - name : String
+  - age : int
   + getName() : String
   + setName() : void
   + getAge() : int
@@ -59,13 +59,13 @@ class UMLCodeGenerator {
   + saveUMLCode() : void
 }
 class UMLClass {
-  - : String
-  - : List<UMLField>
-  - : List<UMLMethod>
-  - : List<String>
-  - : List<String>
-  - : List<String>
-  - : List<String>
+  - name : String
+  - fields : List<UMLField>
+  - methods : List<UMLMethod>
+  - interfaces : List<String>
+  - parentClass : List<String>
+  - dependencies : List<String>
+  - createdObjects : List<String>
   + getName() : String
   + setName() : void
   + getFields() : List<UMLField>
@@ -82,9 +82,9 @@ class UMLClass {
   + setCreatedObjects() : void
 }
 class UMLField {
-  - : String
-  - : String
-  - : String
+  - name : String
+  - type : String
+  - visibility : String
   + toString() : String
   + getName() : String
   + setName() : void
@@ -94,10 +94,10 @@ class UMLField {
   + setVisibility() : void
 }
 class UMLMethod {
-  - : String
-  - : String
-  - : String
-  - : List<String>
+  - name : String
+  - returnType : String
+  - visibility : String
+  - parameter : List<String>
   + getName() : String
   + setName() : void
   + getReturnType() : String
@@ -108,9 +108,9 @@ class UMLMethod {
   + setParameter() : void
 }
 class UMLRelationship {
-  - : String
-  - : String
-  - : RelationshipType
+  - source : String
+  - target : String
+  - type : RelationshipType
   + toString() : String
   + getSource() : String
   + setSource() : void
@@ -120,12 +120,12 @@ class UMLRelationship {
   + setType() : void
 }
 class UMLGenerator {
-  - : FileAnalyzer
-  - : PlainUmlGenerator
-  - : PdfGenerator
-  - : ClassAnalyzer
-  - : RelationShipAnalyzer
-  - : UMLCodeGenerator
+  - fileAnalyzer : FileAnalyzer
+  - generator : PlainUmlGenerator
+  - pdfGenerator : PdfGenerator
+  - classAnalyzer : ClassAnalyzer
+  - relationshipAnalyzer : RelationShipAnalyzer
+  - codeGenerator : UMLCodeGenerator
   + generate() : void
 }
 class UmlCommands {
@@ -134,16 +134,16 @@ class UmlCommands {
 class RelationshipUtils {
   + generateRelationshipArrow() : String
 }
-RelationShipAnalyzer -- AssociationDetector
-RelationShipAnalyzer -- InheritanceDetector
-UMLGenerator -- FileAnalyzer
 RelationShipAnalyzer -- CompositionDetector
+RelationShipAnalyzer -- AssociationDetector
 UMLGenerator -- PlainUmlGenerator
+RelationShipAnalyzer -- DependencyDetector
 UMLGenerator -- UMLCodeGenerator
+RelationShipAnalyzer -- InheritanceDetector
+RelationShipAnalyzer -- ImplementationDetector
+UMLGenerator -- FileAnalyzer
+UMLGenerator -- ClassAnalyzer
 UMLGenerator -- PdfGenerator
 UMLGenerator -- RelationShipAnalyzer
-RelationShipAnalyzer -- DependencyDetector
-RelationShipAnalyzer -- ImplementationDetector
-UMLGenerator -- ClassAnalyzer
 Dog --|> Animal
 @enduml

@@ -23,7 +23,8 @@ public class PlainUmlGenerator {
         for (UMLClass umlClass : classes) {
             sb.append("class ").append(umlClass.getName()).append(" {\n");
             for (UMLField field : umlClass.getFields()) {
-                sb.append("  ").append(field.getName()).append(" : ").append(field.getType()).append("\n");
+                sb.append("  ").append(field.getVisibility()).append(" ").append(field.getName()).append(" : ").append(field.getType()).append("\n");
+
             }
             for (UMLMethod method : umlClass.getMethods()) {
                 sb.append("  ").append(method.getVisibility()).append(" ").append(method.getName()).append("() : ").append(method.getReturnType()).append("\n");

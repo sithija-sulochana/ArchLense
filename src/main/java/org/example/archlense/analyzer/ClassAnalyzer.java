@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClassAnalyzer {
+    // TODO : Field names don't show
     public List<UMLClass> analyze(File file) throws Exception{
         CompilationUnit cu = StaticJavaParser.parse(file);
 
@@ -26,7 +27,9 @@ public class ClassAnalyzer {
                 String fieldName = field.getVariables().get(0).getNameAsString();
                 String fieldType = field.getVariables().get(0).getType().asString();
                 String visibility = getVisibility(field.getAccessSpecifier().asString());
-                umlClass.getFields().add(new UMLField(fieldName, fieldType, visibility));
+                umlClass.getFields().add(new UMLField(visibility, fieldType, fieldName));
+
+
             });
             declaration.getMethods().forEach(method -> {
                 List<String> parameters = new ArrayList<>();
